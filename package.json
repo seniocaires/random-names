@@ -1,0 +1,28 @@
+{
+  "name": "com.github.seniocaires.random-names",
+  "version": "1.0.0",
+  "description": "Random Names API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seniocaires/random-names.git"
+  },
+  "keywords": [
+    "random-name",
+    "random-names",
+    "random_name",
+    "random_name"
+  ],
+  "author": "Sênio Caires",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/seniocaires/random-names/issues"
+  },
+  "homepage": "https://github.com/seniocaires/random-names#readme",
+  "dependencies": {
+    "nedb": "^1.8.0"
+  }
+}

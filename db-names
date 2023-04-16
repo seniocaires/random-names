@@ -1,0 +1,5 @@
+{"name":"José","_id":"4RlXP2Oy9azzM8AP"}
+{"name":"Antônio","_id":"Kd4V71RKborLpI4g"}
+{"name":"Carlos","_id":"bLiOiKqg8HSDOEgL"}
+{"name":"Maria","_id":"yAOuoteTojTjSRxl"}
+{"$$indexCreated":{"fieldName":"name","unique":true,"sparse":false}}
