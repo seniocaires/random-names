@@ -1,5 +1,5 @@
-{"$$indexCreated":{"fieldName":"name","unique":true,"sparse":false}}
+{"name":"Antônio","_id":"2W2dqQh6tsttMoSv"}
 {"name":"Maria","_id":"QAR5qzll1TpVFgZz"}
 {"name":"José","_id":"jLk8xaKRx0xxuKhh"}
-{"name":"Antônio","_id":"2W2dqQh6tsttMoSv"}
 {"name":"Carlos","_id":"zAX6EhBf6PfgDp0z"}
+{"$$indexCreated":{"fieldName":"name","unique":true,"sparse":false}}
