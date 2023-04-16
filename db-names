@@ -1,5 +1,5 @@
-{"name":"Antônio","_id":"2W2dqQh6tsttMoSv"}
-{"name":"Maria","_id":"QAR5qzll1TpVFgZz"}
-{"name":"José","_id":"jLk8xaKRx0xxuKhh"}
-{"name":"Carlos","_id":"zAX6EhBf6PfgDp0z"}
-{"$$indexCreated":{"fieldName":"name","unique":true,"sparse":false}}
+{"data":"José","_id":"0lKtb8VKYOVvjIXD"}
+{"data":"Antônio","_id":"MH57woSsIYuwRmfI"}
+{"data":"Carlos","_id":"ebGrrvKhUTF4vy1Q"}
+{"data":"Maria","_id":"i2gKgpgjgmgd269q"}
+{"$$indexCreated":{"fieldName":"data","unique":true,"sparse":false}}

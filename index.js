@@ -4,18 +4,37 @@ dotenv.config();
 const serverPort = process.env.PORT ? process.env.PORT : 3000;
 const app = express();
 const Datastore = require('nedb');
-const db = new Datastore({ filename: 'db-names', autoload: true });
-let totalDatabase = 0;
+const dbNames = new Datastore({ filename: 'db-names', autoload: true });
+const dbLastNames = new Datastore({ filename: 'db-lastNames', autoload: true });
+let totalNames = 0;
+let totalLastNames = 0;
 
 const find = () => {
   return new Promise((resolve, reject) => {
-    const skipCount = Math.floor(Math.random() * totalDatabase);
-    db.find({})
+    const skipCount = Math.floor(Math.random() * totalNames);
+    dbNames.find({})
       .skip(skipCount)
       .limit(1)
-      .exec((errorFind, itens) => {
-        if (!errorFind && itens && itens.length > 0) {
-          resolve(itens[0]);
+      .exec((errorFind, items) => {
+        if (!errorFind && items && items.length > 0) {
+          resolve(items[0]);
+        } else {
+          console.error(errorFind);
+          reject(false);
+        }
+      });
+  });
+};
+
+const findLastName = () => {
+  return new Promise((resolve, reject) => {
+    const skipCount = Math.floor(Math.random() * totalLastNames);
+    dbLastNames.find({})
+      .skip(skipCount)
+      .limit(2)
+      .exec((errorFind, items) => {
+        if (!errorFind && items && items.length > 0) {
+          resolve(items);
         } else {
           console.error(errorFind);
           reject(false);
@@ -37,23 +56,30 @@ app.get('/names', async (request, response) => {
 
   let responseItens = [];
   for (let index = 1; index <= total; index++) {
-    const item = await find();
-    if (item) {
-      responseItens.push(item);
+    const name = await find();
+    const lastName = await findLastName();
+    if (name) {
+      responseItens.push({data: `${name.data} ${lastName.map(item => item.data).join(' ')}`});
     } else {
       return response.status(500).send(`Error. Try again later;`);
     }
   }
 
-  return response.send(responseItens.map((item) => item.name));
+  return response.send(responseItens.map((item) => item.data));
 });
 
 app.listen(serverPort, function () {
-  db.count({}, (errorCount, count) => {
-    if (errorCount || count <= 0) {
-      console.error(`[Error] Error on load database. Is database empty?`);
+  dbNames.count({}, (errorCountNames, countNames) => {
+    if (errorCountNames || countNames <= 0) {
+      console.error(`[Error] Error on load database 'names'. Is database empty?`);
     }
-    totalDatabase = count;
-    console.info(`Server started on port ${serverPort}`);
+    totalNames = countNames;
+    dbLastNames.count({}, (errorCountLastNames, countLastNames) => {
+      if (errorCountLastNames || countLastNames <= 0) {
+        console.error(`[Error] Error on load database 'lastNames'. Is database empty?`);
+      }
+      totalLastNames = countLastNames;
+      console.info(`Server started on port ${serverPort}`);
+    });
   });
 });
